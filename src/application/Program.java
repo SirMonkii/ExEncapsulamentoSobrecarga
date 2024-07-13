@@ -12,14 +12,14 @@ public class Program {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 
-		System.out.print("Número da conta ");
+		System.out.print("Enter account number: ");
 		int numConta = sc.nextInt();
 
-		System.out.print("Nome do titular ");
+		System.out.print("Enter account holder: ");
 		sc.nextLine();
 		String name = sc.nextLine();
 
-		System.out.print("Depósito incial? ");
+		System.out.print("Is there an initial deposit (y/n)? ");
 
 		String depositoYN = (sc.nextLine());
 		double valores;
