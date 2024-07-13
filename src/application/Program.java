@@ -13,65 +13,36 @@ public class Program {
 		Scanner sc = new Scanner(System.in);
 
 		System.out.print("Enter account number: ");
-		int numConta = sc.nextInt();
+		int accountNumber = sc.nextInt();
 
 		System.out.print("Enter account holder: ");
 		sc.nextLine();
-		String name = sc.nextLine();
+		String accountHolderName = sc.nextLine();
 
 		System.out.print("Is there an initial deposit (y/n)? ");
 
-		String depositoYN = (sc.nextLine());
-		double valores;
+		String initialDepositYN = (sc.nextLine());
+		double initialDeposit;
 
-		Account account = null;
+		Account account;
 
-		// Nesse if eu coloquei os métodos .toUpperCase e .equals pra pegar o valor Y
-		// independente do usuário passar em letra maiúscula ou minúscula
-		if (depositoYN.toUpperCase().equals("Y")) {
-
+		if (initialDepositYN.equalsIgnoreCase("Y")) {
 			System.out.print("Enter initial deposit value: ");
-			valores = sc.nextDouble();
-			account = new Account(numConta, name, valores);
+			initialDeposit = sc.nextDouble();
+			account = new Account(accountNumber, accountHolderName, initialDeposit);
 
-			System.out.println();
-			System.out.println("Account data:");
-			System.out.println(account);
-			System.out.println();
+			account.accountData(account);
 
-			System.out.print("Enter a deposit value: ");
-			valores = sc.nextDouble();
-			account.deposito(valores);
-			System.out.println("Update account data:");
-			System.out.println(account);
-
-			System.out.println();
-			System.out.print("Enter a withdraw value: ");
-			valores = sc.nextDouble();
-			account.saque(valores);
-			System.out.println("Update account data:");
-			System.out.println(account);
+			account.deposit(account, sc);
+			account.withdraw(account, sc);
 
 		} else {
-			account = new Account(numConta, name);
+			account = new Account(accountNumber, accountHolderName);
 
-			System.out.println();
-			System.out.println("Account data:");
-			System.out.println(account);
-			System.out.println();
+			account.accountData(account);
 
-			System.out.print("Enter a deposit value: ");
-			valores = sc.nextDouble();
-			account.deposito(valores);
-			System.out.println("Update account data:");
-			System.out.println(account);
-
-			System.out.println();
-			System.out.print("Enter a deposit value: ");
-			valores = sc.nextDouble();
-			account.saque(valores);
-			System.out.println("Update account data:");
-			System.out.println(account);
+			account.deposit(account, sc);
+			account.withdraw(account, sc);
 		}
 
 		sc.close();

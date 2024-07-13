@@ -1,51 +1,80 @@
 package entities;
 
+import java.util.Scanner;
+
 public class Account {
 
-	private int contaNum;
-	private String nomeTitular;
-	private double saldo;
+	private int accountNumber;
+	private String accountHolderName;
+	private double balance, values;
 
 	public Account() {
 
 	}
 
-	public Account(int contaNum, String nomeTitular, double saldo) {
-		this.contaNum = contaNum;
-		this.nomeTitular = nomeTitular;
-		this.saldo = saldo;
+	public Account(int accountNumber, String accountHolderName, double balance) {
+		this.accountNumber = accountNumber;
+		this.accountHolderName = accountHolderName;
+		this.balance = balance;
 	}
 
-	public Account(int contaNum, String nomeTitular) {
-		this.contaNum = contaNum;
-		this.nomeTitular = nomeTitular;
+	public Account(int accountNumber, String accountHolderName) {
+		this.accountNumber = accountNumber;
+		this.accountHolderName = accountHolderName;
 	}
 
-	public String getNomeTitular() {
-		return nomeTitular;
+	public String getAccountHolderName() {
+		return accountHolderName;
 	}
 
-	public void setNomeTitular(String nomeTitular) {
-		this.nomeTitular = nomeTitular;
+	public void setAccountHolderName(String accountHolderName) {
+		this.accountHolderName = accountHolderName;
 	}
 
-	public int getContaNum() {
-		return contaNum;
+	public int getAccountNumber() {
+		return accountNumber;
 	}
 
-	public double getSaldo() {
-		return saldo;
+	public double getBalance() {
+		return balance;
 	}
 
-	public void deposito(double valorDeposito) {
-		saldo += valorDeposito;
+	public void accountData(Account account) {
+		System.out.println();
+		System.out.println("Account data:");
+		System.out.println(account);
+		System.out.println();
+
 	}
 
-	public void saque(double valorSaque) {
-		saldo -= (valorSaque + 5);
+	public void depositLogic(double depositValue) {
+		balance += depositValue;
+	}
+
+	public void deposit(Account account, Scanner sc) {
+		System.out.print("Enter a deposit value: ");
+		values = sc.nextDouble();
+		account.depositLogic(values);
+		System.out.println("Update account data:");
+		System.out.println(account);
+	}
+
+	public void withdrawLogic(double withdrawValue) {
+		balance -= (withdrawValue + 5);
+	}
+
+	public void withdraw(Account account, Scanner sc) {
+		System.out.println();
+		System.out.print("Enter a withdraw value: ");
+		values = sc.nextDouble();
+		account.withdrawLogic(values);
+		System.out.println("Update account data:");
+		System.out.println(account);
+
 	}
 
 	public String toString() {
-		return "Account " + contaNum + ", Holder: " + nomeTitular + ", Balance: $" + String.format("%.2f", saldo);
+		return "Account " + accountNumber + ", Holder: " + accountHolderName + ", Balance: $"
+				+ String.format("%.2f", balance);
 	}
 }
